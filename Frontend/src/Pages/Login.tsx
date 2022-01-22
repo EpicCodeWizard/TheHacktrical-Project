@@ -1,6 +1,20 @@
-import React from 'react';
+import { FormEvent, useState } from 'react';
+import {EmailSignup, GoogleSignup, SignOut, Signin} from './fx/firebase'
 
 export default function Login() {
+
+    const [creds, setCreds] = useState<{ email: string, password: string}>({ 
+        email: '',
+        password: ''
+    })
+
+    const [err, setErr] = useState('')
+    // EmailSignup('e', 'p', 'name', 'actor', setErr)
+
+    function handleSubmit(e: FormEvent<HTMLFormElement>) {
+        
+    }
+
     return (
         <div className="flex items-center min-h-screen bg-white dark:bg-gray-900">
             <div className="container mx-auto">
@@ -10,19 +24,45 @@ export default function Login() {
                         <p className="text-gray-500 dark:text-gray-400">Sign in to access your account</p>
                     </div>
                     <div className="m-7">
-                        <form action="">
+                        <form onSubmit={handleSubmit}>
                             <div className="mb-6">
                                 <label htmlFor="email" className="block mb-2 text-sm text-gray-600 dark:text-gray-400">Email Address</label>
-                                <input type="email" name="email" id="email" placeholder="you@company.com" className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                <input 
+                                    type="email" 
+                                    name="email" 
+                                    id="email" 
+                                    value={creds.email} 
+                                    onChange={
+                                        (e) => setCreds({...creds, email: e.target.value})
+                                    }
+                                    placeholder="you@company.com" 
+                                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                                />
                             </div>
                             <div className="mb-6">
                                 <div className="flex justify-between mb-2">
                                     <label htmlFor="password" className="text-sm text-gray-600 dark:text-gray-400">Password</label>
                                 </div>
-                                <input type="password" name="password" id="password" placeholder="Your Password" className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" />
+                                <input 
+                                    type="password" 
+                                    name="password" 
+                                    id="password" 
+                                    value={creds.password}
+                                    onChange={
+                                        (e) => setCreds({...creds, password: e.target.value})
+                                    }
+                                    placeholder="Your Password"
+                                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                                />
                             </div>
                             <div className="mb-6">
-                                <button type="button" className="w-full px-3 py-4 text-white bg-sky-300 rounded-md focus:bg-sky-500 hover:bg-sky-500 focus:outline-none">Sign in</button>
+                                <button 
+                                    type="submit" 
+                                    onClick={() => Signin(creds.email, creds.password, setErr)}
+                                    className="w-full px-3 py-4 text-white bg-sky-300 rounded-md focus:bg-sky-500 hover:bg-sky-500 focus:outline-none"
+                                >
+                                    Sign in
+                                </button>
                             </div>
                             <p className="text-sm text-center text-gray-400">Don&#x27;t have an account yet? <a href="/register" className="text-sky-400 focus:outline-none focus:underline focus:text-sky-500 dark:focus:border-sky-800">Sign up</a>.</p>
                         </form>
