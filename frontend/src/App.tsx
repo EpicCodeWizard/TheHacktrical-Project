@@ -7,14 +7,16 @@ import {
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+// import Jobs from './Pages/Jobs';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        {/* <Route path="/jobs" element={<Jobs />} /> */}
       </Routes>
     </div>
   );
