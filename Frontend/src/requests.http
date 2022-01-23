@@ -1,0 +1,40 @@
+###Create Job
+POST http://localhost:5000/jobs/create
+content-type: application/json
+
+{
+    "recruiter": "Dwayne the Rock Johnson",
+    "script": "Its OK, Its OK your welcome",
+    "title": "Moana",
+    "location": "Honolulu, Hawaii",
+    "email": "Bob@Ross.com"
+}
+
+###Create User 
+POST http://localhost:5000/localhost:5000/users/create
+{
+    "name": "",
+    "email": "",
+    "role": ""
+}
+
+###User by Email
+GET http://localhost:5000/users/Bob@Ross.com
+
+###Get All Jobs
+GET http://localhost:5000/jobs
+
+###Add Rescordings
+POST http://localhost:5000/recordings/add/d0c829e1-8572-4a4a-868d-8e26e5c627d3
+content-type:application/json
+
+{
+    "email": "Bob@Ross.com",
+    "url": "https://www.youtube.com/watch?v=szlhtejAMyM",
+}
+
+
+###Get Recordings
+GET http://localhost:5000/recordings/job/d0c829e1-8572-4a4a-868d-8e26e5c627d3
+
+
